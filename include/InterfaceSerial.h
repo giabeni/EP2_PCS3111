@@ -1,7 +1,7 @@
 #ifndef INTERFACESERIAL_H
 #define INTERFACESERIAL_H
 
-#include "Serie.h"
+#include "SerieDeCanal.h"
 #include <string>
 #include <windows.h>
 
@@ -15,20 +15,28 @@ using namespace std;
  * A: VALOR1, VALOR2, VALOR3,... // para os valores
  *
  * Baseado em http://playground.arduino.cc/Interfacing/CPPWindows
- * Obs: essa classe esta simplificada para este EP.
- * @Version EP1
+ * @Version EP2
  */
 class InterfaceSerial {
 public:
   /**
-   * Inicializa a comunicacao usando uma porta.
+   * Cria a comunicacao usando uma porta.
+   * @Version EP2
    */
-  void inicializar(string porta);
+  InterfaceSerial(string porta);
+  virtual ~InterfaceSerial();
 
   /**
-   * Registra a serie especifica a um canal.
+   * Inicializa a interface serial.
+   * @Version EP2
    */
-  void registrar(string canal, Serie* serie);
+  void inicializar();
+
+  /**
+   * Registra a serie de canal a um canal.
+   * @Version EP2
+   */
+  void registrar(string canal, SerieDeCanal* serie);
 
   /**
    * Atualiza as series registradas com o canal.
@@ -38,6 +46,18 @@ public:
    */
   bool atualizar();
 
+  /**
+   * Obtem um arranjo com todos os nomes dos canais disponiveis
+   * @Version EP2
+   */
+  string* getNomeDosCanais();
+
+  /**
+   * Informa a quantidade de canais disponiveis.
+   * @Version EP2
+   */
+  int getQuantidadeDeCanais();
+
 private:
   // Metodos internos, de apoio
   void conectar();
@@ -46,7 +66,7 @@ private:
   int encontraHeader(char* buffer, int inicio, int tamanho);
 
   string* canaisRegistrados;
-  Serie** registradas;
+  SerieDeCanal** registradas;
   int quantidadeDeSeriesRegistradas;
   string* canais;
   int quantidadeDeCanais;

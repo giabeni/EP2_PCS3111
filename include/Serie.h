@@ -1,6 +1,8 @@
 #ifndef SERIE_H
 #define SERIE_H
 
+#define NUMERO_MAXIMO_VALORES 500
+
 #include <iostream>
 #include <string>
 #include <cmath>

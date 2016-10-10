@@ -1,7 +1,7 @@
 #ifndef SERIEDECANAL_H
 #define SERIEDECANAL_H
 
-#define MAX_FILA 500
+#include "Serie.h"
 
 class SerieDeCanal : public Serie{
 public:
@@ -26,11 +26,44 @@ public:
     */
     virtual void adicionar (double valor);
 
+
+    /**
+    * Informa se a serie esta vazia.
+    */
+    bool estaVazia();
+
+    /**
+    * Informa o numero de valores que a serie possui.
+    * Por exemplo, a serie (1, 2, 3, 5) possui tamanho 4.
+    */
+    int getTamanho();
+
+    /**
+    * Obtem o valor que esta na posicao definida da serie. A contagem de
+    * posicoes comeca em 0.
+    *
+    * Em caso de posicoes invalidas, retorne 0.
+    *
+    * Por exemplo, considere a serie (1, 2, 3, 5, 7, 11, 13). O metodo
+    * getValor(0) deve retornar 1; getValor(6) deve retornar 13.
+    */
+    double getValor(int posicao);
+
+    /**
+    * Obtem o maior valor da serie.
+    */
+    double getMaximo();
+
+    /**
+    * Obtem o menor valor da serie.
+    */
+    double getMinimo();
+
 protected:
     int quantidadeMaxima;
     /*dados da fila*/
-    int tamanho = MAX_FILA;
-    double* valores[tamanho];
+    static const int tamanho = NUMERO_MAXIMO_VALORES;
+    double valores[tamanho];
     int inicio = 0;
     int fim = 0;
 

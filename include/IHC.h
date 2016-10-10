@@ -3,19 +3,27 @@
 
 /**
  * Classe de apoio para interface com usuario.
- * @Version EP1
+ *
+ * Para usar os metodos deve-se fazer, por exemplo, IHC::sleep().
+ *
+ * @Version EP2
  */
 class IHC {
 public:
   /**
    * Informa se a tecla ESC foi pressionada.
    */
-  bool escFoiPressionado();
+  static bool escFoiPressionado();
 
   /**
    * Espera por alguns ms.
    */
-  void sleep();
+  static void sleep();
+private:
+    /**
+     * Impede a criacao de objetos deste tipo.
+     */
+    IHC();
 };
 
 #endif // IHC_H

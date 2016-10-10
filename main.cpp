@@ -4,12 +4,13 @@
 #include "IHC.h"
 #include "Grafico.h"
 #include "Tela.h"
-#include "Serie.h"
+#include "SerieDeCanal.h"
+#include "Tempo.h"
 
 using namespace std;
 
 int main() {
-    string serieX, serieY, canalX, canalY, tituloX, tituloY, unidX, unidY;
+    /*string serieX, serieY, canalX, canalY, tituloX, tituloY, unidX, unidY;
     int minEixoX, minEixoY, maxEixoX, maxEixoY;
 
     cout << "Serie no eixo x: ";
@@ -36,31 +37,41 @@ int main() {
     cout << "Escala minima do eixo y: ";
     cin >> minEixoY;
     cout << "Escala maxima do eixo y: ";
-    cin >> maxEixoY;
+    cin >> maxEixoY;*/
 
-    Serie *sX = new Serie();
-    sX->setNome(serieX);
-    Serie *sY = new Serie();
-    sY->setNome(serieY);
+    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 5);
+    sC->adicionar(2);
+    sC->adicionar(235);
+    sC->adicionar(23);
+    sC->adicionar(10);
+    sC->adicionar(0);
+    sC->adicionar(400);
+    sC->adicionar(20);
 
-    InterfaceSerial *is = new InterfaceSerial();
-    is->inicializar ("\\\\.\\COM4");
-    is->registrar(canalX, sX);
-    is->registrar(canalY, sY);
-
-    Grafico* graf = new Grafico();
-    graf->setTela (new Tela() );
-    graf->setSerieNasAbscissas(sX);
-    graf->setSerieNasOrdenadas(sY);
-    graf->setEixoDasAbscissas(tituloX, unidX, minEixoX, maxEixoX);
-    graf->setEixoDasOrdenadas(tituloY, unidY, minEixoY, maxEixoY);
-
-    IHC* ihc = new IHC();
-    while (!ihc->escFoiPressionado()) {
-        is->atualizar();
-        graf->desenhar();
-        ihc->sleep();
+    for(int i = 0; i < 5; i++){
+        cout << sC->getValor(i) << endl;
     }
+    cout << sC->getMaximo() << " and " << sC->getMinimo();
+
+    Tempo *t = new Tempo(5);
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    /* INCREMENTAR DEU RUIM*/
+
+    for(int i = 0; i < 5; i++){
+        cout << t->getValor(i) << endl;
+    }
+    cout << t->getMaximo() << " and " << t->getMinimo();
+
+
+
+
+
 
 
     return 0;

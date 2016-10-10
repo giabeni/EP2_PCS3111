@@ -20,6 +20,22 @@
 #include <iostream>
 #include <cctype>
 
+InterfaceSerial::InterfaceSerial(string porta) : porta(porta){
+  canaisRegistrados = new string[MAXIMO_REGISTROS];
+  registradas = new SerieDeCanal*[MAXIMO_REGISTROS];
+
+  canais = NULL;
+  quantidadeDeCanais = 0;
+}
+
+InterfaceSerial::~InterfaceSerial() {
+  desconectar();
+  delete[] canaisRegistrados;
+  delete[] registradas;
+  if (canais != NULL)
+      delete canais;
+}
+
 void InterfaceSerial::conectar() {
     if (conectado) return;
 
@@ -118,23 +134,18 @@ void InterfaceSerial::conectar() {
   }
 
 
-void InterfaceSerial::inicializar(string porta) {
+void InterfaceSerial::inicializar() {
   if (conectado) {
     // Desconectado... e limpando
     desconectar();
-    delete[] canaisRegistrados;
-    delete[] registradas;
-    if (canais != NULL)
+    if (canais != NULL) {
       delete canais;
+      quantidadeDeCanais = 0;
+    }
   }
 
   this->porta = porta;
   conectar();
-
-  // Inicializando as variaveis
-  canaisRegistrados = new string[MAXIMO_REGISTROS];
-  registradas = new Serie*[MAXIMO_REGISTROS];
-  quantidadeDeSeriesRegistradas = 0;
 
   // espera pelo cabecalho
   cout << "Aperte o botao reset da placa." << endl;
@@ -218,7 +229,7 @@ int InterfaceSerial::encontraHeader(char* buffer, int inicio, int tamanho) {
   return posicaoHeader;
 }
 
-void InterfaceSerial::registrar (string canal, Serie* serie) {
+void InterfaceSerial::registrar (string canal, SerieDeCanal* serie) {
   if (quantidadeDeSeriesRegistradas >= MAXIMO_REGISTROS) {
     // Deselegante... Nao informa o erro! Veremos como melhorar!
     return;
@@ -284,4 +295,12 @@ bool InterfaceSerial::atualizar() {
   }
 
   return false;
+}
+
+string* InterfaceSerial::getNomeDosCanais() {
+  return canais;
+}
+
+int InterfaceSerial::getQuantidadeDeCanais() {
+  return quantidadeDeCanais;
 }

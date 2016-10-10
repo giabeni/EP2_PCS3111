@@ -123,7 +123,8 @@ void Tela::incluirEixoDasAbscissas() {
 	// Divisoes
 	int divisao = 0;
   for (int i = getColunaEixo(); i < LARGURA_DA_TELA - 1; i += DIVISAO_ABSCISSA) {
-    buffer[getLinhaEixo() + 1][i] = MARCADOR_EIXO_ABSCISSAS;
+    if (buffer[getLinhaEixo() + 1][i] == ' ')
+      buffer[getLinhaEixo() + 1][i] = MARCADOR_EIXO_ABSCISSAS;
     escrever(abscissas->getEscalaMinima() + abscissas->getIncrementoDaDivisao() * divisao, i, getLinhaEixo() + 2, LARGURA_NUMERO);
     divisao++;
   }
@@ -156,7 +157,8 @@ void Tela::incluirEixoDasOrdenadas() {
 	// Divisoes
 	int divisao = 0;
   for (int i = getLinhaEixo(); i > 0; i -= DIVISAO_ORDENADA) {
-    buffer[i][getColunaEixo() - 1] = MARCADOR_EIXO_ORDENADAS;
+    if (buffer[i][getColunaEixo() - 1] == ' ')
+      buffer[i][getColunaEixo() - 1] = MARCADOR_EIXO_ORDENADAS;
     escrever(ordenadas->getEscalaMinima() + ordenadas->getIncrementoDaDivisao() * divisao, getColunaEixo() - 1 - LARGURA_NUMERO, i, LARGURA_NUMERO);
     divisao++;
   }
