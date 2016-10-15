@@ -19,12 +19,12 @@ double EixoDinamico::getIncrementoDaDivisao(){
 double EixoDinamico::getEscalaMinima(){
     if(this->serie->getTamanho() < 2 || this->serie->getMaximo() == this->serie->getMinimo())
         return this->escalaMinimaInicial;
-	return this->serie->getMinimo();
+     return this->serie->getMinimo();
 }
 
 double EixoDinamico::getEscalaMaxima(){
     if(this->serie->getTamanho() < 2 || this->serie->getMaximo() == this->serie->getMinimo())
         return this->escalaMaximaInicial;
-	return this->serie->getMaximo();
+    return this->serie->getMaximo();
 }
 
