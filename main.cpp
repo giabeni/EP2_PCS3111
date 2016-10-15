@@ -39,7 +39,7 @@ int main() {
     cout << "Escala maxima do eixo y: ";
     cin >> maxEixoY;*/
 
-    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 5);
+    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 3);
     sC->adicionar(2);
     sC->adicionar(235);
     sC->adicionar(23);
@@ -48,24 +48,33 @@ int main() {
     sC->adicionar(400);
     sC->adicionar(20);
 
-    for(int i = 0; i < 5; i++){
+    for(int i = 0; i < 3; i++){
         cout << sC->getValor(i) << endl;
     }
-    cout << sC->getMaximo() << " and " << sC->getMinimo();
+    cout << sC->getMaximo() << " and " << sC->getMinimo() << endl;
 
-    Tempo *t = new Tempo(5);
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    /* INCREMENTAR DEU RUIM*/
+    Tempo *t = new Tempo(10);
 
-    for(int i = 0; i < 5; i++){
-        cout << t->getValor(i) << endl;
+    cout << t->getValor(0) << endl;
+
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+    t->incrementar();
+
+    for( int i = 0; i < 6 ; i++){
+        cout << t->getValor(i) << " ";
     }
+        cout << endl;
+
+
     cout << t->getMaximo() << " and " << t->getMinimo();
 
 

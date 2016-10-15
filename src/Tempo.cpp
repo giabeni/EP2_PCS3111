@@ -1,6 +1,6 @@
 #include "Tempo.h"
 
-Tempo::Tempo(int tamahoDaFaixa) : Serie("Tempo"){
+Tempo::Tempo(int tamanhoDaFaixa) : Serie("Tempo"){
     this->tamanhoDaFaixa = tamanhoDaFaixa;
 }
 
@@ -9,35 +9,13 @@ Tempo::~Tempo(){
 }
 
 void Tempo::incrementar(){
-
-    double valor;
-    if(this->estaVazia())
-        valor = 1;
-    else
-        valor = this->valores[this->fim - 1] + 1;
-
-    if(this->getMaximo() == NAN && this->getMinimo() == NAN){
-        this->maximo = 1;
-        this->minimo = 1;
-        this->vazia = false;
+    /* atualiza tempo*/
+    this->tempoFinal = this->tempoFinal + 1;
+    this->vazia = false;
+    if(this->tempoFinal > this->tamanhoDaFaixa){
+        this->minimo = this->minimo + 1;
     }
-
-    this->valores[this->fim] = valor;
-    //qtdMax = tamanho - inicio + fim se inicio > fim
-    // qtdMax = fim - inicio se fim > inicio
-    if(this->fim == this->tamanho - 1){
-        this->fim = 0;
-        this->inicio++;
-    }else{
-        this->fim++;
-        if(this->inicio < this->fim)
-            this->inicio = this->fim - this->tamanhoDaFaixa;
-        else
-            this->inicio = this->tamanho + this->fim - this->tamanhoDaFaixa;
-    }
-
-    this->minimo = this->valores[inicio];
-    this->maximo = this->valores[fim - 1];
+    this->maximo = this->tempoFinal;
 
 
 }
@@ -47,15 +25,21 @@ bool Tempo::estaVazia(){
 }
 
 int Tempo::getTamanho(){
-	return this->fim - this->inicio;
+	if(this->inicio > this->fim){
+        return this->tamanho - this->inicio + this->fim;
+    }else{
+        return this->fim - this->inicio;
+    }
 }
-
 double Tempo::getValor(int posicao){
-	if(this->inicio + posicao > this->tamanho - 1){
-        return this->valores[posicao - this->tamanho + this->inicio];
-	}else{
-        return this->valores[this->inicio + posicao];
-	}
+    double v = this->tempoFinal - (this->tamanhoDaFaixa - posicao - 1);
+    if(this->tempoFinal < this->tamanhoDaFaixa)
+        return posicao + 1;
+    if(v > 0)
+        return v;
+    else
+        return this->tempoFinal + posicao;
+
 }
 
 double Tempo::getMaximo(){

@@ -52,10 +52,13 @@ public:
 private:
     int tamanhoDaFaixa;
     /*dados da fila*/
-    static const int tamanho = NUMERO_MAXIMO_VALORES;
-    double valores[tamanho];
-    int inicio = 0;
-    int fim = 0;
+    static const int tamanho = NUMERO_MAXIMO_VALORES; /*tamanho do vetor*/
+    double valores[tamanho]; /*vetor*/
+    int inicio = 0; /* posicao do vetor onde inicia fila */
+    int fim = 0; /* posicao do vetor onde termina fila */
+    double tempoFinal = 1; /* ultimo valor adicionado */
+    double minimo = 1;
+
 };
 
 #endif // TEMPO_H

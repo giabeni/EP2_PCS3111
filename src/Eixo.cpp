@@ -3,31 +3,17 @@
 #include <iostream>
 #include <string>
 
-
-
-/* ------ Setters --------------------------*/
-
-void Eixo::setTitulo(string titulo){
-	this->titulo = titulo;
+Eixo::Eixo(string titulo, string unidade, int numeroDeDivisoes, double escalaMinima, double escalaMaxima){
+    this->titulo = titulo;
+    this->unidade = unidade;
+    this->numeroDeDivisoes = numeroDeDivisoes;
+    this->escalaMinima = escalaMinima;
+    this->escalaMaxima = escalaMaxima;
 }
 
-void Eixo::setUnidade(string unidade){
-	this->unidade = unidade;
-}
+Eixo::~Eixo(){
 
-void Eixo::setNumeroDeDivisoes(int numero){
-	this->numeroDeDivisoes = numero;
 }
-
-void Eixo::setEscalaMinima(double escalaMinima){
-	this->escalaMinima = escalaMinima;
-}
-
-void Eixo::setEscalaMaxima(double escalaMaxima){
-	this->escalaMaxima = escalaMaxima;
-}
-
-/* ----- Getters -------------------------*/
 
 string Eixo::getTitulo(){
 	return this->titulo;

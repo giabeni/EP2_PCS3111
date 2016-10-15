@@ -39,7 +39,11 @@ bool SerieDeCanal::estaVazia(){
 }
 
 int SerieDeCanal::getTamanho(){
-	return this->fim - this->inicio;
+    if(this->inicio > this->fim){
+        return this->tamanho - this->inicio + this->fim;
+    }else{
+        return this->fim - this->inicio;
+    }
 }
 
 double SerieDeCanal::getValor(int posicao){

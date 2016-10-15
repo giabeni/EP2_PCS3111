@@ -10,22 +10,10 @@ void Grafico::setSerieNasOrdenadas(Serie* y) {
 }
 
 void Grafico::setEixoDasAbscissas(string titulo, string unidade, double minimo, double maximo) {
-    this->eixoX = new Eixo;
-
-    this->eixoX->setTitulo(titulo);
-    this->eixoX->setUnidade(unidade);
-    this->eixoX->setEscalaMinima(minimo);
-    this->eixoX->setEscalaMaxima(maximo);
-    this->eixoX->setNumeroDeDivisoes( (LARGURA_UTIL-1)/DIVISAO_ABSCISSA);
+    this->eixoX = new Eixo(titulo, unidade,(LARGURA_UTIL-1)/DIVISAO_ABSCISSA, minimo, maximo );
 }
 void Grafico::setEixoDasOrdenadas(string titulo, string unidade, double minimo, double maximo) {
-    this->eixoY = new Eixo;
-
-    this->eixoY->setTitulo(titulo);
-    this->eixoY->setUnidade(unidade);
-    this->eixoY->setEscalaMinima(minimo);
-    this->eixoY->setEscalaMaxima(maximo);
-    this->eixoY->setNumeroDeDivisoes( (ALTURA_UTIL-1)/DIVISAO_ORDENADA);
+    this->eixoY = new Eixo(titulo, unidade,(LARGURA_UTIL-1)/DIVISAO_ABSCISSA, minimo, maximo );
 }
 
 void Grafico::desenhar() {
