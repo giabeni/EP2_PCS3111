@@ -6,6 +6,7 @@
 #include "Tela.h"
 #include "SerieDeCanal.h"
 #include "Tempo.h"
+#include "EixoDinamico.h"
 
 using namespace std;
 
@@ -39,46 +40,38 @@ int main() {
     cout << "Escala maxima do eixo y: ";
     cin >> maxEixoY;*/
 
-    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 3);
-    sC->adicionar(2);
-    sC->adicionar(235);
-    sC->adicionar(23);
+    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 5);
     sC->adicionar(10);
-    sC->adicionar(0);
-    sC->adicionar(400);
     sC->adicionar(20);
+    sC->adicionar(30);
+    sC->adicionar(40);
+    sC->adicionar(50);
+    sC->adicionar(60);
 
-    for(int i = 0; i < 3; i++){
-        cout << sC->getValor(i) << endl;
-    }
-    cout << sC->getMaximo() << " and " << sC->getMinimo() << endl;
-
-    Tempo *t = new Tempo(10);
-
-    cout << t->getValor(0) << endl;
-
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
+    Tempo *t = new Tempo(5);
     t->incrementar();
     t->incrementar();
     t->incrementar();
     t->incrementar();
     t->incrementar();
 
-    for( int i = 0; i < 6 ; i++){
-        cout << t->getValor(i) << " ";
-    }
-        cout << endl;
+    Tela *tela = new Tela();
+    EixoDinamico *eX = new EixoDinamico(t, "s", 1, 1, 10);
+    EixoDinamico *eY = new EixoDinamico(sC, "s", 1, 0, 100);
+    Grafico* graf = new Grafico(tela, t, sC, eX, eY);
 
+    /*InterfaceSerial *is = new InterfaceSerial("\\\\.\\COM4");
+    is->inicializar ();
+    is->registrar("a", t);
+    is->registrar("b", sC);*/
 
-    cout << t->getMaximo() << " and " << t->getMinimo();
+    graf->desenhar();
 
-
-
+    /*while (!IHC::escFoiPressionado()) {
+        //is->atualizar();
+        graf->desenhar();
+        IHC::sleep();
+    }*/
 
 
 

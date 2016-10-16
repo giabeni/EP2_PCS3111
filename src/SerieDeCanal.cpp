@@ -8,16 +8,52 @@ SerieDeCanal::~SerieDeCanal(){
     //dtor
 }
 
-void SerieDeCanal::adicionar(double valor){
-    /*if(this->getMaximo() == NAN && this->getMinimo() == NAN){
-        this->maximo = valor;
-        this->minimo = valor;
-        this->vazia = false;
-    }else{
-        if(valor < this->getMinimo()) this->minimo = valor;
-        if(valor > this->getMaximo()) this->maximo = valor;
-    }*/
+void SerieDeCanal::enqueue(double v){
+    this->valores[this->fim] = v;
+    if(this->fim == this->tamanho - 1)
+        this->fim = 0;
+    else this->fim++;
+}
 
+void SerieDeCanal::dequeue(){
+    if(this->inicio == this->tamanho - 1)
+        this->inicio = 0;
+    else this->inicio++;
+}
+
+void SerieDeCanal::adicionar(double valor){
+
+    if(getTamanho() < quantidadeMaxima)
+        enqueue(valor);
+    else{
+        enqueue(valor);
+        dequeue();
+    }
+}
+
+
+ /*   this->valores[this->fim] = valor;
+    //qtdMax = tamanho - inicio + fim se inicio > fim
+    // qtdMax = fim - inicio se fim > inicio
+    if(this->fim == this->tamanho - 1){
+        this->fim = 0;
+        if(this->getTamanho() == this->quantidadeMaxima)
+            this->inicio++;
+    }else{
+        this->fim++;
+        if(this->inicio < this->fim)
+            if(this->getTamanho() == this->quantidadeMaxima)
+                this->inicio++;
+        else
+            if(this->inicio == this->tamanho - 1)
+                this->inicio = 0;
+            else
+                this->inicio++;
+
+    }
+}
+
+void SerieDeCanal::adicionar(double valor){
     this->valores[this->fim] = valor;
     //qtdMax = tamanho - inicio + fim se inicio > fim
     // qtdMax = fim - inicio se fim > inicio
@@ -32,7 +68,7 @@ void SerieDeCanal::adicionar(double valor){
             this->inicio = this->tamanho + this->fim - this->quantidadeMaxima;
 
     }
-}
+}*/
 
 bool SerieDeCanal::estaVazia(){
 	return this->vazia;
@@ -47,6 +83,8 @@ int SerieDeCanal::getTamanho(){
 }
 
 double SerieDeCanal::getValor(int posicao){
+    if(this->getTamanho() < this->quantidadeMaxima)
+        return this->valores[posicao];
 	if(this->inicio + posicao > this->tamanho - 1){
         return this->valores[posicao - this->tamanho + this->inicio];
 	}else{

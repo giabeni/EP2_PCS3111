@@ -67,6 +67,10 @@ protected:
     int inicio = 0;
     int fim = 0;
 
+private:
+    void enqueue(double v);
+    void dequeue();
+
 };
 
 #endif // SERIEDECANAL_H

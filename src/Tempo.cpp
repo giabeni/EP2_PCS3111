@@ -25,11 +25,9 @@ bool Tempo::estaVazia(){
 }
 
 int Tempo::getTamanho(){
-	if(this->inicio > this->fim){
-        return this->tamanho - this->inicio + this->fim;
-    }else{
-        return this->fim - this->inicio;
-    }
+	if(tempoFinal < tamanhoDaFaixa)
+        return tempoFinal;
+	return tamanhoDaFaixa;
 }
 double Tempo::getValor(int posicao){
     double v = this->tempoFinal - (this->tamanhoDaFaixa - posicao - 1);

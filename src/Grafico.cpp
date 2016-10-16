@@ -2,18 +2,15 @@
 #include <string.h>
 #include <cmath>
 
-void Grafico::setSerieNasAbscissas(Serie* x) {
+Grafico::Grafico(Tela* tela, Serie* x, Serie *y, Eixo* abscissas, Eixo* ordenadas){
+    this->tela = tela;
     this->serieX = x;
-}
-void Grafico::setSerieNasOrdenadas(Serie* y) {
     this->serieY = y;
+    this->eixoX = abscissas;
+    this->eixoY = ordenadas;
 }
+Grafico::~Grafico(){
 
-void Grafico::setEixoDasAbscissas(string titulo, string unidade, double minimo, double maximo) {
-    this->eixoX = new Eixo(titulo, unidade,(LARGURA_UTIL-1)/DIVISAO_ABSCISSA, minimo, maximo );
-}
-void Grafico::setEixoDasOrdenadas(string titulo, string unidade, double minimo, double maximo) {
-    this->eixoY = new Eixo(titulo, unidade,(LARGURA_UTIL-1)/DIVISAO_ABSCISSA, minimo, maximo );
 }
 
 void Grafico::desenhar() {
@@ -48,6 +45,7 @@ void Grafico::desenhar() {
 
     for(int i = 0; i  < serieX->getTamanho() ; i++){
 
+
         int x = pontosX[i];
         int y = pontosY[i];
 
@@ -71,6 +69,7 @@ void Grafico::desenhar() {
             if(y < yInferior&& x > xSuperior )
                 this->tela->adicionarForaDoLimiteEm(Limite::INFERIOR, Limite::SUPERIOR);
         }
+
     this->tela->desenhar();
     }
 
@@ -79,10 +78,6 @@ void Grafico::desenhar() {
 
 void Grafico::reset() {
     this->tela->apagar();
-}
-
-void Grafico::setTela(Tela* t) {
-    this->tela = t;
 }
 
 Serie* Grafico::getSerieNasAbscissas() {
