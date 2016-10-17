@@ -5,7 +5,7 @@ SerieDeCanal::SerieDeCanal(string nome, int quantidadeMaxima) : Serie(nome){
 }
 
 SerieDeCanal::~SerieDeCanal(){
-    //dtor
+    delete[] valores;
 }
 
 void SerieDeCanal::enqueue(double v){
@@ -30,45 +30,6 @@ void SerieDeCanal::adicionar(double valor){
         dequeue();
     }
 }
-
-
- /*   this->valores[this->fim] = valor;
-    //qtdMax = tamanho - inicio + fim se inicio > fim
-    // qtdMax = fim - inicio se fim > inicio
-    if(this->fim == this->tamanho - 1){
-        this->fim = 0;
-        if(this->getTamanho() == this->quantidadeMaxima)
-            this->inicio++;
-    }else{
-        this->fim++;
-        if(this->inicio < this->fim)
-            if(this->getTamanho() == this->quantidadeMaxima)
-                this->inicio++;
-        else
-            if(this->inicio == this->tamanho - 1)
-                this->inicio = 0;
-            else
-                this->inicio++;
-
-    }
-}
-
-void SerieDeCanal::adicionar(double valor){
-    this->valores[this->fim] = valor;
-    //qtdMax = tamanho - inicio + fim se inicio > fim
-    // qtdMax = fim - inicio se fim > inicio
-    if(this->fim == this->tamanho - 1){
-        this->fim = 0;
-        this->inicio++;
-    }else{
-        this->fim++;
-        if(this->inicio < this->fim)
-            this->inicio = this->fim - this->quantidadeMaxima;
-        else
-            this->inicio = this->tamanho + this->fim - this->quantidadeMaxima;
-
-    }
-}*/
 
 bool SerieDeCanal::estaVazia(){
 	return this->vazia;

@@ -10,10 +10,15 @@ Grafico::Grafico(Tela* tela, Serie* x, Serie *y, Eixo* abscissas, Eixo* ordenada
     this->eixoY = ordenadas;
 }
 Grafico::~Grafico(){
-
+    delete serieX;
+    delete serieY;
+    delete eixoX;
+    delete eixoY;
+    delete tela;
 }
 
 void Grafico::desenhar() {
+    this->tela->apagar();
     //adicionar eixos
     this->tela->setEixoDasAbscissas(eixoX);
     this->tela->setEixoDasOrdenadas(eixoY);
@@ -22,7 +27,7 @@ void Grafico::desenhar() {
     int pontosY[NUMERO_MAXIMO_VALORES];
 
     //nós temos a serie com um vetor de valores
-    for(int i = 0; i  < serieX->getTamanho() ; i++){
+    for(int i = 0; i  <= serieX->getTamanho() ; i++){
            double xSerie = serieX->getValor(i);
            int minEixo = eixoX->getEscalaMinima();
            int maxEixo = eixoX->getEscalaMaxima();
@@ -30,7 +35,7 @@ void Grafico::desenhar() {
            pontosX[i] = xMatriz;
     }
 
-    for(int i = 0; i  < serieY->getTamanho() ; i++){
+    for(int i = 0; i  <= serieY->getTamanho() ; i++){
            double ySerie = serieY->getValor(i);
            int minEixo = eixoY->getEscalaMinima();
            int maxEixo = eixoY->getEscalaMaxima();
@@ -44,7 +49,6 @@ void Grafico::desenhar() {
     int yInferior = 0;
 
     for(int i = 0; i  < serieX->getTamanho() ; i++){
-
 
         int x = pontosX[i];
         int y = pontosY[i];
@@ -70,9 +74,10 @@ void Grafico::desenhar() {
                 this->tela->adicionarForaDoLimiteEm(Limite::INFERIOR, Limite::SUPERIOR);
         }
 
-    this->tela->desenhar();
+
     }
 
+    this->tela->desenhar();
 
 }
 

@@ -298,9 +298,16 @@ bool InterfaceSerial::atualizar() {
 }
 
 string* InterfaceSerial::getNomeDosCanais() {
+  string* testeC = new string[20];
+  testeC[0] = "ACCX";
+  testeC[1] = "ACCY";
+  testeC[2] = "VELX";
+  testeC[3] = "VELY";
+  return testeC;
   return canais;
 }
 
 int InterfaceSerial::getQuantidadeDeCanais() {
+    return 4;
   return quantidadeDeCanais;
 }

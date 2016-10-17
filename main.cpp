@@ -8,72 +8,143 @@
 #include "Tempo.h"
 #include "EixoDinamico.h"
 
+
 using namespace std;
 
 int main() {
-    /*string serieX, serieY, canalX, canalY, tituloX, tituloY, unidX, unidY;
-    int minEixoX, minEixoY, maxEixoX, maxEixoY;
+    string  tituloX, tituloY, unidX, unidY;
+    int serieX, serieY, qtdMaxX, qtdMaxY;
+    double minEixoX, minEixoY, maxEixoX, maxEixoY;
+    char dinamX, dinamY;
+    //Calculando numero de divisoes
+    int numDivX = (LARGURA_UTIL - 1)/DIVISAO_ABSCISSA;
+    int numDivY = (ALTURA_UTIL - 1)/DIVISAO_ORDENADA;
 
-    cout << "Serie no eixo x: ";
+    InterfaceSerial *is = new InterfaceSerial("\\\\.\\COM4");
+    //is->inicializar();
+
+    cout << "Aperte o botao reset da placa" << endl;
+
+    /* Entrada eixo X*/
+    cout << "Escolha uma serie para o eixo X:" << endl;
+    cout << "0) Tempo" << endl;
+
+    /* Escolhe serie */
+    for(int i = 0; i < is->getQuantidadeDeCanais(); i++){
+        cout << i+1 <<") " << is->getNomeDosCanais()[i] << endl;
+    }
     cin >> serieX;
-    cout << "Canal x: ";
-    cin >> canalX;
-    cout << "Titulo do eixo x: ";
-    cin >> tituloX;
-    cout << "Unidade do eixo x: ";
+
+    cout << "Informe a quantidade maxima de valores: ";
+    cin >> qtdMaxX;
+    cout << "O eixo deve ser (e)statico ou (d)inamico ? ";
+    cin >> dinamX;
+    if(serieX != 0){
+        cout << "Informe o titulo: ";
+        cin >> tituloX;
+    }
+    cout << "Informe a unidade do eixo X: ";
     cin >> unidX;
-    cout << "Escala minima do eixo x: ";
+    cout << "Infomre a escala minima inicial do eixo X: ";
     cin >> minEixoX;
-    cout << "Escala maxima do eixo x: ";
+    cout << "Informe a escala maxima inicial do eixo X: ";
     cin >> maxEixoX;
 
-    cout << "Serie no eixo y: ";
+    Tempo *tempo = new Tempo(qtdMaxX);
+    SerieDeCanal *sX;
+    Eixo *eX;
+
+    if(dinamX == 'd'){
+        if(serieX == 0){
+            eX = new EixoDinamico(tempo, unidX, numDivX, minEixoX, maxEixoX);
+        }else{
+            sX = new SerieDeCanal(is->getNomeDosCanais()[serieX-1], qtdMaxX);
+            eX = new EixoDinamico(sX, unidX, numDivX, minEixoX, maxEixoX);
+        }
+    }else{
+        if(serieX != 0)
+            sX = new SerieDeCanal(is->getNomeDosCanais()[serieX-1], qtdMaxX);
+        eX = new Eixo(tituloX, unidX, numDivX, minEixoX, maxEixoX);
+    }
+
+
+
+
+
+
+    /* Entrada eixo Y*/
+    cout << "Escolha uma serie para o eixo Y:" << endl;
+    if(serieX != 0) cout << "0) Tempo" << endl;
+
+    /* Escolhe serie */
+    for(int i = 0; i < is->getQuantidadeDeCanais(); i++){
+        cout << i+1 <<") " << is->getNomeDosCanais()[i] << endl;
+    }
     cin >> serieY;
-    cout << "Canal y: ";
-    cin >> canalY;
-    cout << "Titulo do eixo y: ";
-    cin >> tituloY;
-    cout << "Unidade do eixo y: ";
+
+    cout << "Informe a quantidade maxima de valores: ";
+    cin >> qtdMaxY;
+    cout << "O eixo deve ser (e)statico ou (d)inamico ? ";
+    cin >> dinamY;
+    if(serieY != 0){
+        cout << "Informe o titulo: ";
+        cin >> tituloY;
+    }
+    cout << "Informe a unidade do eixo Y: ";
     cin >> unidY;
-    cout << "Escala minima do eixo y: ";
+    cout << "Infomre a escala minima inicial do eixo Y: ";
     cin >> minEixoY;
-    cout << "Escala maxima do eixo y: ";
-    cin >> maxEixoY;*/
+    cout << "Informe a escala maxima inicial do eixo Y: ";
+    cin >> maxEixoY;
 
-    SerieDeCanal *sC = new SerieDeCanal("Gabriel" , 5);
-    sC->adicionar(10);
-    sC->adicionar(20);
-    sC->adicionar(30);
-    sC->adicionar(40);
-    sC->adicionar(50);
-    sC->adicionar(60);
+    Eixo *eY;
+    SerieDeCanal *sY;
+int x;
+    if(dinamY == 'd'){
+        if(serieY == 0){
+            eY = new EixoDinamico(tempo, unidY, numDivY, minEixoY, maxEixoY);
+        }else{
+            sY = new SerieDeCanal(is->getNomeDosCanais()[serieY-1], qtdMaxY);
+            eY = new EixoDinamico(sY, unidY, numDivY, minEixoY, maxEixoY);
+        }
+    }else{
+        if(serieY != 0 )
+            sY = new SerieDeCanal(is->getNomeDosCanais()[serieY-1], qtdMaxY);
+        eY = new Eixo(tituloY, unidY, numDivY, minEixoY, maxEixoY);
+    }
 
-    Tempo *t = new Tempo(5);
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
-    t->incrementar();
+    /* Inicializando Grafico */
 
     Tela *tela = new Tela();
-    EixoDinamico *eX = new EixoDinamico(t, "s", 1, 1, 10);
-    EixoDinamico *eY = new EixoDinamico(sC, "s", 1, 0, 100);
-    Grafico* graf = new Grafico(tela, t, sC, eX, eY);
+    Grafico *g;
 
-    /*InterfaceSerial *is = new InterfaceSerial("\\\\.\\COM4");
-    is->inicializar ();
-    is->registrar("a", t);
-    is->registrar("b", sC);*/
+    if(serieX == 0)
+        g = new Grafico(tela, tempo, sY, eX, eY);
+    else if(serieY == 0)
+        g = new Grafico(tela, sX, tempo, eX, eY);
+    else
+        g = new Grafico(tela, sX, sY, eX, eY);
 
-    graf->desenhar();
-
-    /*while (!IHC::escFoiPressionado()) {
+    double i = 0;
+    while (!IHC::escFoiPressionado()) {
+        if(serieX == 0 || serieY == 0){
+            tempo->incrementar();
+        }
         //is->atualizar();
-        graf->desenhar();
+        sY->adicionar(10*i);
+        g->desenhar();
+        i = i + 1;
         IHC::sleep();
-    }*/
+    }
 
-
+    delete is;
+    delete tempo;
+    delete sX;
+    delete eX;
+    delete sY;
+    delete eY;
+    delete tela;
+    delete g;
 
 
     return 0;

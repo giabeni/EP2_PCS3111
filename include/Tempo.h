@@ -51,7 +51,7 @@ public:
 
 private:
     int tamanhoDaFaixa;
-    double tempoFinal = 1; /* ultimo valor adicionado */
+    double tempoFinal = 0; /* ultimo valor adicionado */
     double minimo = 1;
 
 };

@@ -9,7 +9,7 @@ EixoDinamico::EixoDinamico(Serie* serie, string unidade, int numeroDeDivisoes,
 }
 
 EixoDinamico::~EixoDinamico(){
-    //dtor
+    delete serie;
 }
 
 double EixoDinamico::getIncrementoDaDivisao(){
