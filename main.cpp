@@ -21,7 +21,7 @@ int main() {
     int numDivY = (ALTURA_UTIL - 1)/DIVISAO_ORDENADA;
 
     InterfaceSerial *is = new InterfaceSerial("\\\\.\\COM4");
-    //is->inicializar();
+    is->inicializar();
 
     cout << "Aperte o botao reset da placa" << endl;
 
@@ -45,7 +45,7 @@ int main() {
     }
     cout << "Informe a unidade do eixo X: ";
     cin >> unidX;
-    cout << "Infomre a escala minima inicial do eixo X: ";
+    cout << "Informe a escala minima inicial do eixo X: ";
     cin >> minEixoX;
     cout << "Informe a escala maxima inicial do eixo X: ";
     cin >> maxEixoX;
@@ -92,14 +92,14 @@ int main() {
     }
     cout << "Informe a unidade do eixo Y: ";
     cin >> unidY;
-    cout << "Infomre a escala minima inicial do eixo Y: ";
+    cout << "Informe a escala minima inicial do eixo Y: ";
     cin >> minEixoY;
     cout << "Informe a escala maxima inicial do eixo Y: ";
     cin >> maxEixoY;
 
     Eixo *eY;
     SerieDeCanal *sY;
-int x;
+
     if(dinamY == 'd'){
         if(serieY == 0){
             eY = new EixoDinamico(tempo, unidY, numDivY, minEixoY, maxEixoY);
@@ -125,15 +125,13 @@ int x;
     else
         g = new Grafico(tela, sX, sY, eX, eY);
 
-    double i = 0;
+
     while (!IHC::escFoiPressionado()) {
         if(serieX == 0 || serieY == 0){
             tempo->incrementar();
         }
-        //is->atualizar();
-        sY->adicionar(10*i);
+        is->atualizar();
         g->desenhar();
-        i = i + 1;
         IHC::sleep();
     }
 

@@ -6,6 +6,8 @@
 #include "Eixo.h"
 #include "Tela.h"
 
+#define NUMERO_MAXIMO_VALORES 500
+
 using namespace std;
 
 /**
