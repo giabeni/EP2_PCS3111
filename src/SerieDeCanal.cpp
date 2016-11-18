@@ -29,6 +29,8 @@ void SerieDeCanal::adicionar(double valor){
         enqueue(valor);
         dequeue();
     }
+
+    this->vazia = false;
 }
 
 bool SerieDeCanal::estaVazia(){

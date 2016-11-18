@@ -2,6 +2,7 @@
 
 Tempo::Tempo(int tamanhoDaFaixa) : Serie("Tempo"){
     this->tamanhoDaFaixa = tamanhoDaFaixa;
+    this->maximo = 0;
 }
 
 Tempo::~Tempo(){
@@ -29,7 +30,9 @@ int Tempo::getTamanho(){
         return tempoFinal;
 	return tamanhoDaFaixa;
 }
+
 double Tempo::getValor(int posicao){
+    if(posicao < 0 || posicao > this->getTamanho() ) return 0;
     double v = this->tempoFinal - (this->tamanhoDaFaixa - posicao - 1);
     if(this->tempoFinal < this->tamanhoDaFaixa)
         return posicao + 1;

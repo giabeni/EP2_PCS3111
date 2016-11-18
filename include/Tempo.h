@@ -53,7 +53,6 @@ private:
     int tamanhoDaFaixa;
     double tempoFinal = 0; /* ultimo valor adicionado */
     double minimo = 1;
-
 };
 
 #endif // TEMPO_H

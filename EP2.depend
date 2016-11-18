@@ -1,0 +1,91 @@
+# depslib dependency file v1.0
+1476751861 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\main.cpp
+	<iostream>
+	<string>
+	"InterfaceSerial.h"
+	"IHC.h"
+	"Grafico.h"
+	"Tela.h"
+	"SerieDeCanal.h"
+	"Tempo.h"
+	"EixoDinamico.h"
+
+1476749322 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\interfaceserial.h
+	"SerieDeCanal.h"
+	<string>
+	<windows.h>
+
+1476473122 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\serie.h
+	<iostream>
+	<string>
+	<cmath>
+
+1476749360 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\ihc.h
+
+1476749989 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\grafico.h
+	<string>
+	"Serie.h"
+	"Eixo.h"
+	"Tela.h"
+
+1476477335 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\eixo.h
+	<string>
+
+1476749341 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\tela.h
+	"Eixo.h"
+
+1476477713 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\eixo.cpp
+	"Eixo.h"
+	<iostream>
+	<string>
+
+1476744379 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\eixodinamico.cpp
+	"EixoDinamico.h"
+
+1476479916 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\eixodinamico.h
+	"Eixo.h"
+	"Serie.h"
+
+1476748754 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\grafico.cpp
+	"Grafico.h"
+	<string.h>
+	<cmath>
+
+1476749374 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\ihc.cpp
+	"IHC.h"
+	<windows.h>
+
+1476751710 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\interfaceserial.cpp
+	"InterfaceSerial.h"
+	<stdio.h>
+	<vector>
+	<iostream>
+	<cctype>
+
+1476749404 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\tela.cpp
+	"Tela.h"
+	<iostream>
+	<cmath>
+	<stdexcept>
+	<sstream>
+	<string>
+	<windows.h>
+	<unistd.h>
+
+1476590781 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\seriedecanal.h
+	"Serie.h"
+
+1476112756 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\serie.cpp
+	"Serie.h"
+	<iostream>
+	<string>
+
+1476744475 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\seriedecanal.cpp
+	"SerieDeCanal.h"
+
+1479488208 source:c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\src\tempo.cpp
+	"Tempo.h"
+
+1479487798 c:\users\giovanni abeni\documents\politécnica\pcs3111\ep2\ep2_pcs3111\include\tempo.h
+	"Serie.h"
+
